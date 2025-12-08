@@ -86,8 +86,8 @@ snakemake -j 1    # Sequential processing
 snakemake -j 2    # Parallel processing with 2 threads (or 3, 4, etc.)
 ```
 ### Pipeline Stages
-+ Stage 1: Quality control is performed and configuration files are generated for all assemblers. Configuration files are written to the configs directory. The following directories are created: 01_filter_reads, 02_fastp_results, 04_soap, 05_hisat.
-+ Stage 2: Processes are independent and can be run in parallel by specifying multiple threads (-j 3). The following directories are created: 03_trinity, 04_soap, 05_hisat, 06_hisat_proc. (Note: Is soap.err necessary?)
-+ Stage 3: The merged.bam file is created in the root directory (suggestions for alternative directory location?) and the 07_trinity_gg directory is generated.
++ Stage 1: Quality control is performed and configuration files are generated for all assemblers. Configuration files are written to the configs directory. The following directories are created: **01_filter_reads, 02_fastp_results, 04_spades, 05_hisat.**
++ Stage 2: Processes are independent and can be run in parallel by specifying multiple threads (-j 3). The following directories are created: **03_trinity, 04_spades, 05_hisat, 06_hisat_proc.**
++ Stage 3: The merged.bam file is created in the root directory and the **07_trinity_gg directory is generated**.
 
 
