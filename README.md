@@ -4,6 +4,7 @@
 * [Input](#input)
 * [Data](#data)
   * [Configuration](#configuration-file)
+* [Run](#Run)
  
 ## Introduction
 The pan-genome concept encompasses protein-coding gene sequences subject to presence-absence variations (PAVs) among multiple accessions of a species, some of which may be absent in the reference sequence. In some cases, the plant pan-transcriptome may serve as an approximation of the pan-genome. It is defined as genes expressed across a set of accessions of a species. This approach considers expression-based presence-absence variations (ePAVs). Nevertheless, structural features of pan-genomes and pan-transcriptomes show close correspondence. We present software that allows pan-transcriptome assembly from scratch using only raw read data.
@@ -73,6 +74,20 @@ Input all necessary files into configuration file “config.yaml”:
 + `samtools:`
   + `thr: 2`
 
-
+## Run
+### Input Data Preparation
+Place all raw read libraries in the **00_raw_reads directory**. Load the reference genome and its annotation into the ref directory.
+### Configuration
+Before running the pipeline, specify all parameters in the config.yaml file. Parameters are organized into blocks labeled by program names. The library type must be specified as either "paired" or "single".​
+### Execution
+To run the pipeline, execute the following command:​
+```
+snakemake -j 1    # Sequential processing
+snakemake -j 2    # Parallel processing with 2 threads (or 3, 4, etc.)
+```
+### Pipeline Stages
++ Stage 1: Quality control is performed and configuration files are generated for all assemblers. Configuration files are written to the configs directory. The following directories are created: 01_filter_reads, 02_fastp_results, 04_soap, 05_hisat.
++ Stage 2: Processes are independent and can be run in parallel by specifying multiple threads (-j 3). The following directories are created: 03_trinity, 04_soap, 05_hisat, 06_hisat_proc. (Note: Is soap.err necessary?)
++ Stage 3: The merged.bam file is created in the root directory (suggestions for alternative directory location?) and the 07_trinity_gg directory is generated.
 
 
