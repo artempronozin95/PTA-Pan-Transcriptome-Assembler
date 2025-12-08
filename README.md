@@ -58,6 +58,7 @@ After these steps all necessary packages are installed. If you need update packa
 1. Reference genome of the species in `FASTA` format.
 2. Annotation of the species in `GFF/GTF` format.
 
+## Data
 ### Configuration file
 Input all necessary files into configuration file “config.yaml”:
 + `lnc:` - known LncRNA sequences of studied organisms in `FASTA` format. 
