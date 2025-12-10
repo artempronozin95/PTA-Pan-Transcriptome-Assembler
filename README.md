@@ -21,6 +21,9 @@ The pipeline includes the following steps:
 #### 3. Meta-assembly.
 #### 4. Pan-transcriptome assembly
 
+## Schematic diagram
+![Test Image 1](https://github.com/artempronozin95/PTA-Pan-Transcriptome-Assembler/blob/main/dag.png)
+
 ## Installation
 # Automatic
 **recommended for clusters/servers**
