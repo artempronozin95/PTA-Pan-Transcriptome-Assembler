@@ -12,9 +12,9 @@ rule all:
       "merged.bam",
       "configs/spades_res.txt",
       "07_trinity_gg/trinity/Trinity-GG.fasta",
-      "combined/combined.tr",
+      "08_combined/combined.tr",
       "tr2aacds.log",
-      "combined/combined.fa"
+      "08_combined/combined.fa"
 
 rule fastp:
     input:
@@ -120,7 +120,7 @@ rule combine:
      params:
          Mode = expand("{Mode}", Mode=config['trinity']['mode']),
      output:
-         "combined/combined.tr"
+         "08_combined/combined.tr"
      run:
         if params.Mode[0] == "each":
             shell("python scripts/config.py {input.trinity} {input.spades} {input.trinityGG}")
@@ -129,24 +129,24 @@ rule combine:
  
 rule vsearch:
    input:
-      "combined/combined.tr"
+      "08_combined/combined.tr"
    output:
-      "combined/combined.fa"
+      "08_combined/combined.fa"
    run:
-      shell("vsearch --threads 30 --minseqlength 28 --cluster_fast  {input} --id 0.95 --alnout combined/combined.aln --centroids combined/combined.fa") 
+      shell("vsearch --threads 30 --minseqlength 28 --cluster_fast  {input} --id 0.95 --alnout 08_combined/combined.aln --centroids 08_combined/combined.fa") 
            
 rule evi:
    input:
-      "combined/combined.fa"
+      "08_combined/combined.fa"
    output:
       "tr2aacds.log"
    run:
-      shell("mkdir evi")
+      shell("mkdir 09_evi")
       shell("./evigene/scripts/prot/tr2aacds.pl -cdnaseq {input} -logfile ./tr2aacds.log -MINAA 20 -NCPU=32 -MAXMEM=60000")
-      shell("mv okayset/ evi")
-      shell("mv dropset/ evi")
-      shell("mv inputset/ evi")
-      shell("mv tmpfiles/ evi")
+      shell("mv okayset/ 09_evi")
+      shell("mv dropset/ 09_evi")
+      shell("mv inputset/ 09_evi")
+      shell("mv tmpfiles/ 09_evi")
       
 
     
