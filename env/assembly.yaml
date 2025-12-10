@@ -14,6 +14,9 @@ dependencies:
   - hisat2=2.2.1
   - salmon=0.14.2
   - vsearch=2.25.0
+  - blast=2.16.0
+  - exonerate=2.4.0
+  - cd-hit=4.8.1
   - python=3.6
   - pip
   - pip:
