@@ -5,6 +5,7 @@
 * [Data](#data)
   * [Configuration](#configuration-file)
 * [Run](#Run)
+* [Output](#Output)
  
 ## Introduction
 The pan-genome concept encompasses protein-coding gene sequences subject to presence-absence variations (PAVs) among multiple accessions of a species, some of which may be absent in the reference sequence. In some cases, the plant pan-transcriptome may serve as an approximation of the pan-genome. It is defined as genes expressed across a set of accessions of a species. This approach considers expression-based presence-absence variations (ePAVs). Nevertheless, structural features of pan-genomes and pan-transcriptomes show close correspondence. We present software that allows pan-transcriptome assembly from scratch using only raw read data.
@@ -90,4 +91,57 @@ snakemake -j 2    # Parallel processing with 2 threads (or 3, 4, etc.)
 + Stage 2: Processes are independent and can be run in parallel by specifying multiple threads (-j 3). The following directories are created: **03_trinity, 04_spades, 05_hisat, 06_hisat_proc.**
 + Stage 3: The merged.bam file is created in the root directory and the **07_trinity_gg directory is generated**.
 
+# Output
+A typical structure of Output is consisted of 9 steps:
+```
+├── 00_raw_reads
+├── 01_filter_reads
+├── 02_fastp_results
+├── 03_trinity
+├── 04_spades
+├── 05_hisat
+├── 06_hisat_proc
+├── 07_trinity_gg
+├── 08_combined
+├── 09_evi
+```
 
+**00_raw_reads**
+
+Raw reads required to start the pipeline.
+
+**01_filter_reads**
+
+Reads after filtering steps with fastp.
+
+**02_fastp_results**
+
+Fastp results (tables and HTML reports)
+
+**03_trinity**
+
+Trinity transcriptome assembly results
+
+**04_spades**
+
+SPAdes transcriptome assembly results
+
+**05_hisat**
+
+Read mapping results to the reference genome
+
+**06_hisat_proc**
+
+Filtered mapped reads results
+
+**07_trinity_gg**
+
+Reference-guided transcriptome assembly
+
+**08_combined**
+
+Merging of three assemblies (Meta-assembly)
+
+**09_evi**
+
+Transcript filtering and sample merging (Pan-transcriptome)
