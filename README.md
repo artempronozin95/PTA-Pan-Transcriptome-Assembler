@@ -148,3 +148,5 @@ Merging of three assemblies (Meta-assembly)
 **09_evi**
 
 Transcript filtering and sample merging (Pan-transcriptome)
+
+The pan-transcriptome assembly is generated in the 09_evi/okayset directory. The assembly is provided in nucleotide format (combined.okay.tr) and amino acid format (combined.okay.aa). Coding sequences (CDS) are stored separately in combined.okay.cds, and transcripts are stored in combined.okay.tr.
